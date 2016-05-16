@@ -6,7 +6,7 @@ public class MapGenerator : MonoBehaviour
     public enum DrawMode { noiseMap, colorMap, Mesh};
     public DrawMode drawMode;
 
-    const int mapChunkSize = 241;
+    public const int mapChunkSize = 241;
     [Range(0, 6)]
     public int levelOfDetail;
 
@@ -29,7 +29,7 @@ public class MapGenerator : MonoBehaviour
 
     public void GenerateMap()
     {
-        float[,] noiseMap = Noise.GenerateNoiseMap(mapChunkSize, mapChunkSize, seed, noiseScale, octaves, persistence, lacunarity, offset);
+        float[,] noiseMap = Noise.GenerateNoiseMap(mapChunkSize, seed, noiseScale, octaves, persistence, lacunarity, offset);
 
         Color[] colorMap = new Color[mapChunkSize * mapChunkSize];
         for(int x = 0; x < mapChunkSize; x++)

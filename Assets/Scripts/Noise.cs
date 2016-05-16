@@ -3,9 +3,9 @@ using System.Collections;
 
 public static class Noise {
 
-    public static float[,] GenerateNoiseMap(int mapWidth, int mapHeight, int seed, float scaler, int octaves, float persistence, float lacunatrity, Vector2 offset)
+    public static float[,] GenerateNoiseMap(int mapChunkSize, int seed, float scaler, int octaves, float persistence, float lacunatrity, Vector2 offset)
     {
-        float[,] noiseMap = new float[mapWidth, mapHeight];
+        float[,] noiseMap = new float[mapChunkSize, mapChunkSize];
 
         System.Random prng = new System.Random(seed);
         Vector2[] octaveOffsets = new Vector2[octaves];
@@ -27,12 +27,12 @@ public static class Noise {
         float minNoiseHeight = float.MaxValue;
         float maxNoiseHeight = float.MinValue;
 
-        float halfWidth = mapWidth / 2;
-        float halfHeight = mapHeight / 2;
+        float halfWidth = mapChunkSize / 2;
+        float halfHeight = mapChunkSize / 2;
 
-        for (int y = 0; y < mapHeight; y++)
+        for (int y = 0; y < mapChunkSize; y++)
         {
-            for(int x = 0; x < mapWidth; x++)
+            for(int x = 0; x < mapChunkSize; x++)
             {
                 float amplitude = 1;
                 float frequency = 1;
@@ -64,9 +64,9 @@ public static class Noise {
             }
         }
 
-        for (int y = 0; y < mapHeight; y++)
+        for (int y = 0; y < mapChunkSize; y++)
         {
-            for (int x = 0; x < mapWidth; x++)
+            for (int x = 0; x < mapChunkSize; x++)
             {
                 noiseMap[x, y] = Mathf.InverseLerp(minNoiseHeight, maxNoiseHeight, noiseMap[x, y]);
             }

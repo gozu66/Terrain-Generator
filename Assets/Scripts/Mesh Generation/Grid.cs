@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-//using System.Collections.Generic;
 
 [RequireComponent(typeof(MeshRenderer), typeof(MeshFilter))]
 public class Grid : MonoBehaviour
@@ -11,9 +10,6 @@ public class Grid : MonoBehaviour
     {
         StartCoroutine("Generate"); 
     }
-
-//    private Vector3[] vertices;
-//    private Mesh mesh;
 
     IEnumerator Generate()
     {
@@ -26,7 +22,7 @@ public class Grid : MonoBehaviour
         Vector4[] tangents = new Vector4[vertices.Length];
         Vector4 tangent = new Vector4(1f, 0f, 0f, -1f);
 
-        /*
+        mesh.name = "Procudural Grid";
         for (int i = 0, y = 0; y <= ySize; y++)
         {
             for (int x = 0; x <= xSize; x++, i++)
@@ -36,8 +32,8 @@ public class Grid : MonoBehaviour
                 tangents[i] = tangent;
             }
         }
-        */
-
+        
+        /*
         int i = 0;
         for (int x = 0; x <= xSize; x++)
         {
@@ -47,11 +43,9 @@ public class Grid : MonoBehaviour
                 uv[i] = new Vector2((float)x / xSize, (float)y / ySize);
                 tangents[i] = tangent;
                 i++;
-
-                //yield return wait;
             }
         }
-
+        */
 
         mesh.vertices = vertices;
         mesh.uv = uv;
@@ -59,7 +53,7 @@ public class Grid : MonoBehaviour
 
         int[] triangles = new int[xSize * ySize * 6];
 
-        /*
+        
                 for (int ti = 0, vi = 0, y = 0; y < ySize; y++, vi++)
                 {
                     for (int x = 0; x < xSize; x++, ti += 6, vi++)
@@ -74,7 +68,8 @@ public class Grid : MonoBehaviour
                         yield return wait;
                     }
                 }
-        */
+        
+        /*
         int tri = 0;
         int vert = 0;
         for(int x = 0; x < xSize; x++)
@@ -96,6 +91,7 @@ public class Grid : MonoBehaviour
             }
             vert++;
         }
+        */
     }
   /*
     void OnDrawGizmos()
